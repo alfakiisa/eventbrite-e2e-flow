@@ -8,7 +8,7 @@ async function run() {
   );
 
   const token = JSON.parse(
-    fs.readFileSync('token.json', 'utf8')
+    fs.readFileSync('tokens.json', 'utf8')
   );
 
   const auth = new google.auth.OAuth2(
