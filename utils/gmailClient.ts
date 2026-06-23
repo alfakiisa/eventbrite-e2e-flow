@@ -9,7 +9,7 @@ function getAuth() {
   );
 
   const token = JSON.parse(
-    fs.readFileSync("auth/token.json", "utf8")
+    fs.readFileSync("auth/tokens.json", "utf8")
   );
 
   const auth = new google.auth.OAuth2(

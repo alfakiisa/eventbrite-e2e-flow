@@ -4,6 +4,7 @@ import { test, expect } from "@playwright/test";
 import { waitForEventbriteOtp } from "../utils/otpHelper";
 import { SignInPage } from "../pages/signInSignUpPage";
 import { HomePage } from "../pages/homePage";
+import data from "../utils/data.json";
 
 test.describe("Eventbrite Login", () => {
   let signInPage: SignInPage;
@@ -15,7 +16,7 @@ test.describe("Eventbrite Login", () => {
     homePage = new HomePage(page);
 
     await signInPage.gotoUrl();
-    await signInPage.enterEmail("alfakihamma@gmail.com");
+    await signInPage.enterEmail(data.email_1);
 
     // Eventbrite sends OTP email
     const otp = await waitForEventbriteOtp();
@@ -31,9 +32,9 @@ test.describe("Eventbrite Login", () => {
 
     //if (await firstNameField.isVisible()) {
       await firstNameField.click();
-      await firstNameField.fill('Test');
+      await firstNameField.fill(data.first_name);
       await lastNameField.click();
-      await lastNameField.fill('User');
+      await lastNameField.fill(data.last_name);
       // submit name form
       await page.click('button[type="button"][class="af-button af-nextButton"]');
       // assert login success

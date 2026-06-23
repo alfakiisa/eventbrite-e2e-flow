@@ -21,7 +21,7 @@ async function run() {
     await oauth2Client.getToken(code);
 
   fs.writeFileSync(
-    'token.json',
+    'tokens.json',
     JSON.stringify(tokens)
   );
 
