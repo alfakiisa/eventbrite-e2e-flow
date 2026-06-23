@@ -1,0 +1,6 @@
+.env
+node_modules/
+playwright-report/
+test-results/
+auth/credentials.json
+auth/tokens.json
