@@ -2,12 +2,12 @@ import { test} from '@playwright/test';
 import { HomePage } from '../pages/homePage';
 import { SignInPage } from '../pages/signInSignUpPage'; 
 import { EventDetailsPage } from '../pages/eventDetailsPage';
+import { CheckoutModal } from '../pages/checkoutModal'
 
 
 test.describe.serial('Eventbrite', () => {
   let homePage: HomePage;
   let signInPage: SignInPage;
-  let eventDetailsPage: EventDetailsPage;
 
   test.beforeAll(async ({ browser }) => {
     const page = await browser.newPage();
@@ -19,7 +19,7 @@ test.describe.serial('Eventbrite', () => {
   });
 
   test.afterAll(async () => {
-    await homePage.page.close();
+    await homePage.homePage.close();
   });
 
   test('page has title', async () => {
@@ -54,10 +54,15 @@ test.describe.serial('Eventbrite', () => {
   });
 
   test('reserve a spot or check availability', async () => {
-   const eventPage = await homePage.selectFirstEvent();
-   eventDetailsPage = new EventDetailsPage(eventPage);
+    const eventPage = await homePage.selectFirstEvent();
+    const checkoutModal = new CheckoutModal(eventPage)
+    const eventDetailsPage = new EventDetailsPage(eventPage);
 
-   await eventDetailsPage.reserveASpot();
+    await eventDetailsPage.clickReserve();
+    await checkoutModal.fillInDetails();
+  });
+
+  test.skip('view and download ticket', async () => {
   });
 
   // test('sign in to an account', async () => {
